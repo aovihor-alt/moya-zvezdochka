@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#fff0f5"><title>Моя звёздочка</title>
+<style>
+:root{--pink:#f5a9c4;--deep:#c84f82;--ink:#75445a;--cream:#fff8fa}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,sans-serif;color:var(--ink);background:linear-gradient(160deg,#fff0f5,#ffe3ed 55%,#fff8fb);min-height:100vh;overflow-x:hidden}
+main{max-width:520px;margin:auto;padding:26px 20px 42px;text-align:center;position:relative}
+h1{font-size:32px;margin:12px 0 4px;color:#bd527e} .sub{margin:0 0 20px;color:#98677c}
+.heart{font-size:76px;display:inline-block;filter:drop-shadow(0 7px 10px #eaa0bd66);animation:pulse 1.7s infinite}
+@keyframes pulse{50%{transform:scale(1.12)}} .card{background:#ffffffc9;border:1px solid #fff;border-radius:25px;padding:20px;margin:16px 0;box-shadow:0 9px 28px #c76a8b18}
+h2{font-size:19px;margin:0 0 8px;color:#bf5b83}.days{font-size:35px;font-weight:800;color:#c34f80}.small{font-size:13px;color:#a4778a}
+button{width:100%;border:0;border-radius:18px;padding:15px 14px;margin:7px 0;background:linear-gradient(100deg,#f7b4cc,#f5c4d5);color:#773d59;font-size:16px;font-weight:700;box-shadow:0 5px 12px #d989a522}
+button:active{transform:scale(.98)}#message{min-height:60px;font-size:17px;line-height:1.45}
+.cat{font-size:42px;margin:8px}.footer{font-size:13px;margin-top:24px;color:#b17b91}
+.spark{position:fixed;pointer-events:none;animation:fall 5s linear infinite;opacity:.5}@keyframes fall{from{transform:translateY(-10vh) rotate(0)}to{transform:translateY(110vh) rotate(300deg)}}
+</style></head>
+<body>
+<main>
+<div class="cat">🐱 🌸 🐾</div>
+<div class="heart">💗</div>
+<h1>Привет, моя Звёздочка!</h1>
+<p class="sub">Это маленький мир, который Тоша сделал для тебя</p>
+<section class="card">
+<h2>Наша история началась</h2><div class="days" id="days">—</div>
+<div>дней вместе 💞</div><div class="small">С 11 октября 2026 года</div>
+</section>
+<section class="card"><h2>Послание от Тоши 💌</h2><div id="message">Ты — моё самое тёплое чудо. Я очень тебя люблю, Звёздочка! ⭐</div></section>
+<button onclick="nextMessage()">💌 Нажми, если скучаешь</button>
+<button onclick="reasons()">🥰 Почему я тебя люблю</button>
+<button onclick="hug()">🤗 Обними меня</button>
+<button onclick="surprise()">🌸 Просто нажми сюда</button>
+<div class="cat" id="cat">🐱💕</div>
+<div class="footer">С любовью, твой Тоша — котёнок любимый ❤️</div>
+</main>
+<script>
+const start = new Date(2026,9,11);
+function updateDays(){const now=new Date();const d=Math.max(0,Math.floor((new Date(now.getFullYear(),now.getMonth(),now.getDate())-start)/86400000));document.getElementById('days').textContent=d}
+updateDays();
+const messages=[
+"Звёздочка, если бы можно было выбирать счастье каждый день, я бы каждый раз выбирал тебя. ❤️",
+"Даже когда мы не рядом, ты всё равно в моих мыслях. Очень скучаю, моя хорошая. 💗",
+"Ты делаешь мой мир светлее просто тем, что ты есть. ⭐",
+"Тоша отправляет тебе миллион нежных обнимашек! 🐱💕",
+"Пожалуйста, помни: ты невероятная, любимая и очень-очень важная для меня."
+];
+let i=0;
+function show(t){document.getElementById('message').textContent=t}
+function nextMessage(){show(messages[i++%messages.length])}
+function reasons(){show("Я люблю тебя за твою улыбку, за твою нежность, за твой характер и за то особенное чувство, которое появляется у меня, когда я думаю о тебе. И просто за то, что ты — моя Настя. 💞")}
+function hug(){show("Крепко-крепко обнимаю тебя через экран! Представь, что Тоша рядом и нежно целует тебя в макушку. 🤗❤️");document.getElementById('cat').textContent="🐱🫂💗"}
+function surprise(){show("Секретное сообщение: ты — моя любимая звёздочка. Если бы небо было у меня в ладонях, я бы подарил тебе самую яркую звезду. ⭐🌸");document.getElementById('cat').textContent="😽💖✨"}
+for(let n=0;n<9;n++){let s=document.createElement('div');s.className='spark';s.textContent=['♡','✦','🌸'][n%3];s.style.left=(n*12)+'%';s.style.animationDelay=(n*.6)+'s';s.style.fontSize=(16+n%3*6)+'px';document.body.appendChild(s)}
+</script></body></html>
